@@ -1,19 +1,21 @@
 import java.util.BitSet
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class PrimeGroovy {
     private int sieveSize
     private BitSet bits
-    private static def resultsDictionary = [
-        10: 4,
-        100: 25,
-        1000: 168,
-        10000: 1229,
-        100000: 9592,
-        1000000: 78498,
-        10000000: 664579,
-        100000000: 5761455,
-        1000000000: 50847534,
-        10000000000: 455052511 
+    private static Map<Long,Integer> resultsDictionary = [
+        10L: 4,
+        100L: 25,
+        1_000L: 168,
+        10_000L: 1229,
+        100_000L: 9592,
+        1_000_000L: 78498,
+        10_000_000L: 664579,
+        100_000_000L: 5761455,
+        1_000_000_000L: 50847534,
+        10_000_000_000L: 455052511
     ]
 
     PrimeGroovy(int size) {
@@ -92,13 +94,13 @@ class PrimeGroovy {
         long start = System.currentTimeMillis()
 
         while (true) {
-            PrimeGroovy sieve = new PrimeGroovy(1000000)
+            PrimeGroovy sieve = new PrimeGroovy(1_000_000)
             sieve.runSieve()
             passes++
             long stop = System.currentTimeMillis()
 
             if (stop - start >= 5000) {
-                sieve.printResults(false, (stop - start) / 1000.0, passes)
+                sieve.printResults(false, (stop - start) / 1000.0d, passes)
                 break
             }
         }
